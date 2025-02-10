@@ -8,10 +8,13 @@ test:
 	uv run pytest
 
 lint:
-	uv run ruff check
+    ruff check gendiff tests
 
 check: test lint
 
+format:
+    ruff check gendiff tests --fix
+	
 build:
 	uv build
 

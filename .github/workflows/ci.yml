@@ -25,6 +25,9 @@ jobs:
 
       - name: Run lint
         run: make lint
+        
+      - name: Run Ruff Linter
+        run: ruff check gendiff tests
 
       - name: Run tests
         run: pytest --cov=gendiff --cov-report=xml
