@@ -18,10 +18,11 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install dependencies
+      - name: Install uv and project dependencies
         run: |
-          pip install -r requirements.txt
-          pip install pytest flake8
+          pip install uv
+          uv venv
+          uv pip install --system
 
       - name: Run lint
         run: make lint
