@@ -6,8 +6,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/9f1e064d3a80998bd854/maintainability)](https://codeclimate.com/github/godofwar007/python-project-50/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/9f1e064d3a80998bd854/test_coverage)](https://codeclimate.com/github/godofwar007/python-project-50/test_coverage)
-# Генератор отличий (gendiff)
+
+# Генератор отличий (*.json)
 
 [![asciicast](https://asciinema.org/a/bjAToXSksO5Id5ooegy1aqOTv.svg)](https://asciinema.org/a/bjAToXSksO5Id5ooegy1aqOTv)
 
+# Генератор отличий (*.yml/yaml)
 
+[![asciicast](https://asciinema.org/a/nogZ2yvsAA8nWEmvYQD7mNuRZ.svg)](https://asciinema.org/a/nogZ2yvsAA8nWEmvYQD7mNuRZ)
