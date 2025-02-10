@@ -22,7 +22,7 @@ jobs:
         run: |
           pip install uv
           uv venv
-          uv pip install --system
+          uv pip install --system .
 
       - name: Run lint
         run: make lint
