@@ -1,5 +1,7 @@
-import pytest
 import os
+
+import pytest
+
 from gendiff.generate_diff import generate_diff
 
 BASE_DIR = os.path.dirname(__file__)
