@@ -14,3 +14,7 @@
 # Генератор отличий (*.yml/yaml)
 
 [![asciicast](https://asciinema.org/a/nogZ2yvsAA8nWEmvYQD7mNuRZ.svg)](https://asciinema.org/a/nogZ2yvsAA8nWEmvYQD7mNuRZ)
+
+# Рекурсивный генератор отличий (with stilish)
+
+[![asciicast](https://asciinema.org/a/9wLUkqrRDYaYkhcFxsJ0IEuBd.svg)](https://asciinema.org/a/9wLUkqrRDYaYkhcFxsJ0IEuBd)
