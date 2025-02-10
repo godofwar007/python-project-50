@@ -11,12 +11,13 @@ push:
 	git add .; git commit -m 'some changes'; git push
 
 lint:
-	ruff check gendiff tests  # ← Заменили пробелы на табуляцию!
+	ruff check gendiff tests
 
-check: test lint
+check: 
+	test lint
 
 format:
-	ruff check gendiff tests --fix  # ← Заменили пробелы на табуляцию!
+	ruff check gendiff tests --fix
 
 build:
 	uv build
