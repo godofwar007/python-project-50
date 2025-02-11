@@ -20,8 +20,8 @@ def stringify(value, depth):
 
 
 def format_stylish(diff, depth=1):
-    indent_for_unchanged = ' ' * (depth * 4)
-    indent_for_marker = ' ' * (depth * 4 - 2)
+    indent = ' ' * (depth * 4)
+    marker_indent = ' ' * (depth * 4 - 2)
     bracket_indent = ' ' * ((depth - 1) * 4)
     lines = []
 
@@ -30,33 +30,42 @@ def format_stylish(diff, depth=1):
         typ = item["type"]
 
         if typ == "nested":
-            nested = format_stylish(item["children"], depth + 1)
-            lines.append(f"{indent_for_unchanged}{key}: {nested}")
+            children = format_stylish(item["children"], depth + 1)
+            lines.append(f"{indent}{key}: {children}")
 
         elif typ == "unchanged":
-            value = stringify(item["value"], depth + 1)
-            lines.append(f"{indent_for_unchanged}{key}: {value}")
+            value = item["value"]
+            val_str = stringify(value, depth + 1)
+            lines.append(f"{indent}{key}: {val_str}")
 
         elif typ == "changed":
-            old_value = stringify(item["old_value"], depth + 1)
-            new_value = stringify(item["new_value"], depth + 1)
-            old_line = f"{indent_for_marker}- {key}:" + \
-                (f" {old_value}" if old_value != "" else "")
-            new_line = f"{indent_for_marker}+ {key}:" + \
-                (f" {new_value}" if new_value != "" else "")
-            lines.append(old_line)
-            lines.append(new_line)
+            old_value = item["old_value"]
+            new_value = item["new_value"]
+            old_str = stringify(old_value, depth + 1)
+            new_str = stringify(new_value, depth + 1)
+            if isinstance(old_value, dict):
+                lines.append(f"{marker_indent}- {key}:\n{old_str}")
+            else:
+                lines.append(f"{marker_indent}- {key}: {old_str}")
+            if isinstance(new_value, dict):
+                lines.append(f"{marker_indent}+ {key}:\n{new_str}")
+            else:
+                lines.append(f"{marker_indent}+ {key}: {new_str}")
 
         elif typ == "removed":
-            value = stringify(item["value"], depth + 1)
-            line = f"{indent_for_marker}- {key}:" + \
-                (f" {value}" if value != "" else "")
-            lines.append(line)
+            value = item["value"]
+            val_str = stringify(value, depth + 1)
+            if isinstance(value, dict):
+                lines.append(f"{marker_indent}- {key}:\n{val_str}")
+            else:
+                lines.append(f"{marker_indent}- {key}: {val_str}")
 
         elif typ == "added":
-            value = stringify(item["value"], depth + 1)
-            line = f"{indent_for_marker}+ {key}:" + \
-                (f" {value}" if value != "" else "")
-            lines.append(line)
+            value = item["value"]
+            val_str = stringify(value, depth + 1)
+            if isinstance(value, dict):
+                lines.append(f"{marker_indent}+ {key}:\n{val_str}")
+            else:
+                lines.append(f"{marker_indent}+ {key}: {val_str}")
 
     return "\n".join(["{"] + lines + [f"{bracket_indent}}}"])
