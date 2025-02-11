@@ -37,12 +37,10 @@ def format_stylish(diff, depth=1):
             old_value = stringify(item["old_value"], depth + 1)
             new_value = stringify(item["new_value"], depth + 1)
 
-            # Старое значение
             lines.append(
                 f"{indent_for_marker}- {key}: " +
                 (old_value if old_value else "")
             )
-            # Новое значение
             lines.append(
                 f"{indent_for_marker}+ {key}: " +
                 (new_value if new_value else "")
