@@ -18,3 +18,8 @@
 # Рекурсивный генератор отличий (with stilish)
 
 [![asciicast](https://asciinema.org/a/9wLUkqrRDYaYkhcFxsJ0IEuBd.svg)](https://asciinema.org/a/9wLUkqrRDYaYkhcFxsJ0IEuBd)
+
+# Рекурсивный генератор отличий (plain)
+
+
+[![asciicast](https://asciinema.org/a/pYISIgQixdVKZSOR1lyNKBKGc.svg)](https://asciinema.org/a/pYISIgQixdVKZSOR1lyNKBKGc)
