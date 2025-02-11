@@ -23,3 +23,7 @@
 
 
 [![asciicast](https://asciinema.org/a/pYISIgQixdVKZSOR1lyNKBKGc.svg)](https://asciinema.org/a/pYISIgQixdVKZSOR1lyNKBKGc)
+
+# Рекурсивный генератор отличий (json)
+
+[![asciicast](https://asciinema.org/a/9s09USzvvwz93bvNYtOcrnGyl.svg)](https://asciinema.org/a/9s09USzvvwz93bvNYtOcrnGyl)
