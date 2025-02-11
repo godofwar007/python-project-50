@@ -40,8 +40,9 @@ def format_stylish(diff, depth=1):
             lines.append(line2)
         elif typ == "removed":
             value = stringify(item["value"], depth + 1)
-            line = (f"{indent_for_marker}- {key}:"
-                    if value == "" else f"{indent_for_marker}- {key}: {value}")
+            line = (f"{indent_for_marker}- {key}: " if value == ""
+                    else f"{indent_for_marker}- {key}: {value}")
+
             lines.append(line)
         elif typ == "added":
             value = stringify(item["value"], depth + 1)
