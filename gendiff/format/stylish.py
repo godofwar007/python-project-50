@@ -29,40 +29,35 @@ def format_stylish(diff, depth=1):
 
         elif typ == "unchanged":
             value = stringify(item["value"], depth + 1)
-            lines.append(f"{indent_for_unchanged}{key}: {value}")
+            lines.append(
+                f"{indent_for_unchanged}{key}: " + (value if value else "")
+            )
 
         elif typ == "changed":
             old_value = stringify(item["old_value"], depth + 1)
             new_value = stringify(item["new_value"], depth + 1)
-            line_old = (
-                f"{indent_for_marker}- {key}:"
-                if old_value == ""
-                else f"{indent_for_marker}- {key}: {old_value}"
+
+            # Старое значение
+            lines.append(
+                f"{indent_for_marker}- {key}: " +
+                (old_value if old_value else "")
             )
-            line_new = (
-                f"{indent_for_marker}+ {key}:"
-                if new_value == ""
-                else f"{indent_for_marker}+ {key}: {new_value}"
+            # Новое значение
+            lines.append(
+                f"{indent_for_marker}+ {key}: " +
+                (new_value if new_value else "")
             )
-            lines.append(line_old)
-            lines.append(line_new)
 
         elif typ == "removed":
             value = stringify(item["value"], depth + 1)
-            line_removed = (
-                f"{indent_for_marker}- {key}:"
-                if value == ""
-                else f"{indent_for_marker}- {key}: {value}"
+            lines.append(
+                f"{indent_for_marker}- {key}: " + (value if value else "")
             )
-            lines.append(line_removed)
 
         elif typ == "added":
             value = stringify(item["value"], depth + 1)
-            line_added = (
-                f"{indent_for_marker}+ {key}:"
-                if value == ""
-                else f"{indent_for_marker}+ {key}: {value}"
+            lines.append(
+                f"{indent_for_marker}+ {key}: " + (value if value else "")
             )
-            lines.append(line_added)
 
     return "\n".join(["{"] + lines + [f"{bracket_indent}}}"])
