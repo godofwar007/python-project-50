@@ -18,9 +18,3 @@ def generate_diff(filepath1, filepath2, format_name='stylish'):
         return format_json(diff)
     else:
         raise ValueError(f"Unknown format: {format_name}")
-    
-    
-    
-    
-    
-    
