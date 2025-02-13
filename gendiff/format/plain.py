@@ -1,3 +1,10 @@
+NESTED = "nested"
+UNCHANGED = "unchanged"
+ADDED = "added"
+REMOVED = "removed"
+CHANGED = "changed"
+
+
 def stringify(value):
     if isinstance(value, dict):
         return "[complex value]"
@@ -16,19 +23,20 @@ def format_plain(diff):
         for item in diff:
             key = item["key"]
             full_key = f"{ancestry}.{key}" if ancestry else key
-            typ = item["type"]
+            change_type = item["type"]
 
-            if typ == "nested":
+            if change_type == NESTED:
                 lines.extend(iter_plain(item["children"], full_key))
-            elif typ == "unchanged":
+            elif change_type == UNCHANGED:
                 continue
-            elif typ == "added":
+            elif change_type == ADDED:
                 value = stringify(item["value"])
                 lines.append(
-                    f"Property '{full_key}' was added with value: {value}")
-            elif typ == "removed":
+                    f"Property '{full_key}' was added with value: {value}"
+                )
+            elif change_type == REMOVED:
                 lines.append(f"Property '{full_key}' was removed")
-            elif typ == "changed":
+            elif change_type == CHANGED:
                 old_val = stringify(item["old_value"])
                 new_val = stringify(item["new_value"])
                 lines.append(

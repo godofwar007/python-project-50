@@ -21,7 +21,6 @@ def main():
     )
     args = parser.parse_args()
 
-    # Убираем лишний вывод "Comparing ..."
     diff = generate_diff(args.first_file, args.second_file, args.format)
     print(diff)
 
