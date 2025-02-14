@@ -1,3 +1,10 @@
+NESTED = "nested"
+UNCHANGED = "unchanged"
+ADDED = "added"
+REMOVED = "removed"
+CHANGED = "changed"
+
+
 def stringify(value, depth):
     if isinstance(value, dict):
         indent = ' ' * (depth * 4)
@@ -21,19 +28,19 @@ def format_stylish(diff, depth=1):
 
     for item in diff:
         key = item["key"]
-        typ = item["type"]
+        change_type = item["type"]
 
-        if typ == "nested":
+        if change_type == NESTED:
             nested = format_stylish(item["children"], depth + 1)
             lines.append(f"{indent_for_unchanged}{key}: {nested}")
 
-        elif typ == "unchanged":
+        elif change_type == UNCHANGED:
             value = stringify(item["value"], depth + 1)
             lines.append(
                 f"{indent_for_unchanged}{key}: " + (value if value else "")
             )
 
-        elif typ == "changed":
+        elif change_type == CHANGED:
             old_value = stringify(item["old_value"], depth + 1)
             new_value = stringify(item["new_value"], depth + 1)
 
@@ -46,13 +53,13 @@ def format_stylish(diff, depth=1):
                 (new_value if new_value else "")
             )
 
-        elif typ == "removed":
+        elif change_type == REMOVED:
             value = stringify(item["value"], depth + 1)
             lines.append(
                 f"{indent_for_marker}- {key}: " + (value if value else "")
             )
 
-        elif typ == "added":
+        elif change_type == ADDED:
             value = stringify(item["value"], depth + 1)
             lines.append(
                 f"{indent_for_marker}+ {key}: " + (value if value else "")

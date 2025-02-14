@@ -15,13 +15,18 @@ def parse_data(data, format):
 
 
 def load_file(filepath):
+    handlers = {
+        '.json': 'json',
+        '.yaml': 'yaml',
+        '.yml': 'yaml'
+    }
+
     with open(filepath, 'r') as f:
         data = f.read()
-    _, ext = os.path.splitext(filepath)
-    ext = ext.lower()
-    if ext == '.json':
-        return parse_data(data, 'json')
-    elif ext in ['.yaml', '.yml']:
-        return parse_data(data, 'yaml')
-    else:
-        raise ValueError(f"Unsupported file extension: {ext}")
+
+    ext = os.path.splitext(filepath)[1].lower()
+
+    if ext in handlers:
+        return parse_data(data, handlers[ext])
+
+    raise ValueError(f"Unsupported file extension: {ext}")
