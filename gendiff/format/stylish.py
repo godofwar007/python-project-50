@@ -1,8 +1,4 @@
-NESTED = "nested"
-UNCHANGED = "unchanged"
-ADDED = "added"
-REMOVED = "removed"
-CHANGED = "changed"
+from gendiff.constants import ADDED, CHANGED, NESTED, REMOVED, UNCHANGED
 
 
 def stringify(value, depth):

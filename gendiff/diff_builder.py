@@ -1,8 +1,4 @@
-NESTED = "nested"
-UNCHANGED = "unchanged"
-ADDED = "added"
-REMOVED = "removed"
-CHANGED = "changed"
+from gendiff.constants import ADDED, CHANGED, NESTED, REMOVED, UNCHANGED
 
 
 def build_diff(data1, data2):
@@ -22,28 +18,24 @@ def build_diff(data1, data2):
                 "type": REMOVED,
                 "value": data1[key]
             })
+        elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+            diff.append({
+                "key": key,
+                "type": NESTED,
+                "children": build_diff(data1[key], data2[key])
+            })
+        elif data1[key] == data2[key]:
+            diff.append({
+                "key": key,
+                "type": UNCHANGED,
+                "value": data1[key]
+            })
         else:
-            value1 = data1[key]
-            value2 = data2[key]
-
-            if isinstance(value1, dict) and isinstance(value2, dict):
-                diff.append({
-                    "key": key,
-                    "type": NESTED,
-                    "children": build_diff(value1, value2)
-                })
-            elif value1 == value2:
-                diff.append({
-                    "key": key,
-                    "type": UNCHANGED,
-                    "value": value1
-                })
-            else:
-                diff.append({
-                    "key": key,
-                    "type": CHANGED,
-                    "old_value": value1,
-                    "new_value": value2
-                })
+            diff.append({
+                "key": key,
+                "type": CHANGED,
+                "old_value": data1[key],
+                "new_value": data2[key]
+            })
 
     return diff

@@ -1,0 +1,5 @@
+NESTED = "nested"
+UNCHANGED = "unchanged"
+ADDED = "added"
+REMOVED = "removed"
+CHANGED = "changed"
